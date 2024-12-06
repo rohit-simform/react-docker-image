@@ -1,0 +1,20 @@
+name : build_and_uploadS3
+run-name : Build and Upload Files to S3
+on : push
+jobs :
+  build_and_upload :
+    env :
+      AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_ACCESS_KEY : ${{ secrets.AWS_ACCESS_KEY }}
+    runs-on : ubuntu-latest
+    steps :
+      - uses : actions/checkout@v4
+      - uses : actions/setup-node@v4
+        with :
+          node-version : 18
+      - name : Install node modules
+        run : npm install
+      - name : Build the project for production
+        run : npm run build
+      - name : Upload Files to S3
+        run : node s3upload.js

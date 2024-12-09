@@ -1,47 +1,63 @@
-React Application Deployment on AWS
-This guide covers two methods for hosting your React application on AWS and integrating CI/CD pipelines for efficient deployment.
 
-Deployment Methods
-1. Static Hosting via AWS S3
-Steps:
-Build the React application locally using npm run build.
-Create an S3 bucket in AWS.
-Upload all files/folders from the build directory to the S3 bucket's objects.
-Enable public access permissions for the bucket.
-Create a bucket policy to allow static hosting.
-Retrieve the website URL from the Properties section of the bucket.
-2. Deploy Docker Image on AWS EC2
-Steps:
-Build a Docker image of the React application locally.
-Push the image to a Docker Hub repository.
-Create an EC2 instance on AWS.
-Install Docker on the EC2 instance.
-Pull the Docker image from Docker Hub.
-Run the Docker image on the EC2 instance.
-Enable port permissions in the EC2 security group to allow access.
-Integration of CI/CD
-1. Integrate GitHub Repo with AWS S3
-Steps:
-Create a GitHub repository.
-Develop a React application locally.
-Write a script (s3Upload.js) to upload the build directory to the S3 bucket.
-Generate AWS Access and Secret Keys for an IAM user.
-Store the keys in GitHub under:
-Repository Settings > Secrets and Variables > Actions.
-Create a GitHub Actions workflow file to automate the upload process.
-Push the React project to the GitHub repository.
-2. Integrate GitHub Repo with Docker Image Deployment on EC2
-Steps:
-Set up an EC2 instance and a GitHub repository.
-Create a Dockerfile for the React application.
-Create a Docker Hub account.
-Store Docker Hub credentials in GitHub under:
-Repository Settings > Secrets and Variables > Actions.
-Install Docker on the EC2 instance.
-Write a GitHub Actions workflow file to:
-Build the Docker image.
-Push it to Docker Hub.
-Pull the image on the EC2 instance.
-Run the image on the EC2 instance.
-Enable port permissions in the EC2 instance's security group.
-Follow these steps to efficiently deploy and automate your React application on AWS.
+# React Application Deployment and CI/CD Integration on AWS
+
+This document provides step-by-step guidance on deploying a React application using AWS services and automating deployment via CI/CD pipelines.
+
+### Static Hosting via AWS S3
+To host your React application statically on AWS S3, follow these steps:
+
+
+
+
+
+There are Two ways to host your React Application over AWS.
+* Static hosting via AWS S3 service.
+	- Create build of react application at local.
+	- Create a bucket into AWS S3.
+	- Upload all files/folder inside of build into the Objects of created  
+	  bucket.
+	- Enable Permissions for accessing public IP of static hosting site.
+	- Create policy for hosting or accessing application via s3.
+	- You will get website url at Properties section.
+	
+* Deploy Docker image of React Application into AWS EC2 instances.
+	- Create Docker image of React Application at local.
+	- Push to Docker hub repository
+	- Create instance of EC2.
+	- Install Docker in EC2.
+	- Pull Docker Image from Docker Hub.
+	- Run the Docker image .
+	- Enable ports permission in security section.
+	
+
+
+=================================================================
+
+INTEGRATION OF CI/CD 
+
+* Integrate Github repo with AWS S3 .
+        - Create Repo over Github .
+        - Create React Application at local.
+        - Create a file(s3Upload.js) to upload a build to the S3 bucket.
+        - Create Access And Secret Key for AWS user over IAM section.
+        - Store or setup "Access Key and Secret Key" into Github .
+              - Under settings of repository.
+              - Under Secret and variables.
+              - (Actions) Tab.
+              
+        - Create a workflow file for gitub actions.
+        - Push code to the respected github repository.
+        
+
+* Integrate Github repo with Docker image deployment into EC2 instance.
+	- Create EC2 instance and git repo.
+	- Create Dockerfile of react app at local.
+	- Create Account for Docker hub.
+	- Store or Configur Docker username and password into Github Security
+	  and variables(Actions) tabs inside repo settings.
+	- Install Docker into EC2.
+	- Create a workflow file to create Docker image , push to the Docker hub
+	  and pull Docker image from docker hub and run into EC2 instance.
+	- Enable ports permission into securty tab of running ec2 instances.
+	
+
